@@ -1,18 +1,14 @@
 <?php
 
+use App\Http\Controllers\CompromissosController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/compromissos', [CompromissosController::class, 'index'])->name('compromissos');
+Route::post('/compromissos', [CompromissosController::class, 'salvar'])->name('compromissos.salvar');
+Route::put('/compromissos', [CompromissosController::class, 'editar'])->name('compromissos.editar');
+Route::get('/compromissos/editar/{compromisso}', [CompromissosController::class, 'editar'])->name('compromissos.editarForm');
+Route::delete('/compromissos', [CompromissosController::class, 'apagar'])->name('compromissos.apagar');
