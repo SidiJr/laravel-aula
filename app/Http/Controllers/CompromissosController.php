@@ -32,7 +32,10 @@ class CompromissosController extends Controller
         return view('compromissos.editar', compact('compromisso'));
     }
 
-    public function apagar()
+    public function apagar(Request $request)
     {
+        $compromisso = Compromisso::findOrFail($request->id);
+        $compromisso->delete();
+        return redirect()->route('compromissos');
     }
 }
